@@ -11,40 +11,40 @@ require_once './function.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <title>Password</title>
+
 </head>
+    <title>Password Generator</title>
+
 <body>
+    <h1>Strong Password Generator</h1>
+    
+    <form method="GET" action="./result.php">
+        <label>Password Length:</label>
+        <input type="number" name="length" min="1" max="100" value="<?php echo isset($_GET['length']) ? $_GET['length'] : 8; ?>">
 
-<form method="GET" action="./result.php">
-    <h1> Grande generatore di password</h1>
-    <br>
+        <br><br>
 
-    <div class="mb-3 container-fluid">
-        <label for="exampleInputPassword1" class="form-label">Genera Password</label>
+        <input type="checkbox" name="lowercase" value="1" <?php echo isset($_GET['lowercase']) ? 'checked' : ''; ?>>
+        <label>Include Lowercase Letters</label><br>
 
-        <input type="text" class="form-control" id="exampleInputPassword1"
+        <input type="checkbox" name="uppercase" value="1" <?php echo isset($_GET['uppercase']) ? 'checked' : ''; ?>>
+        <label>Include Uppercase Letters</label><br>
 
-        value="<?php echo $generatedPassword; ?>">
+        <input type="checkbox" name="numbers" value="1" <?php echo isset($_GET['numbers']) ? 'checked' : ''; ?>>
+        <label>Include Numbers</label><br>
 
-    </div>
+        <input type="checkbox" name="special" value="1" <?php echo isset($_GET['special']) ? 'checked' : ''; ?>>
+        <label>Include Special Characters</label><br>
 
-    <div class="form-group">
-        
-        <input 
-            type="number"
-            id="length"
-            name="length"
-            min="1"
-            max="100"
-            value=<?php echo $length; ?>
-            required
-        >
-    </div>
-    <button type="submit" class="btn btn-primary">
-      <?php ?>
-
-    Genera</button>
-</form>
-
-
+        <br>
+        <button type="submit">Generate Password</button>
+    </form>
+    
+    <?php if ($error): ?>
+        <p style="color: red;"><?php echo $error; ?></p>
+    
+        <p><strong>Generated Password:</strong> <?php echo $generatedPassword; ?></p>
+    <?php endif; ?>
 </body>
 </html>
+

@@ -1,9 +1,33 @@
 <?php
 
-
 // Stringa contenente tutti i caratteri possibili per la generazione della password
 // Include lettere minuscole, maiuscole, numeri e caratteri speciali
-$charactersLength = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+// Definisco i gruppi di caratteri disponibili
+$lowercase = 'abcdefghijklmnopqrstuvwxyz';
+$uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$numbers = '0123456789';
+$specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+// Costruisco la stringa dei caratteri in base alle opzioni selezionate dall'utente
+$charactersLength = '';
+
+if (isset($_GET['lowercase']) && $_GET['lowercase'] == '1') {
+    $charactersLength .= $lowercase;
+}
+if (isset($_GET['uppercase']) && $_GET['uppercase'] == '1') {
+    $charactersLength .= $uppercase;
+}
+if (isset($_GET['numbers']) && $_GET['numbers'] == '1') {
+    $charactersLength .= $numbers;
+}
+if (isset($_GET['special']) && $_GET['special'] == '1') {
+    $charactersLength .= $specialChars;
+}
+
+// Se nessun tipo di carattere è selezionato, uso tutti per default
+if (empty($charactersLength)) {
+    $charactersLength = $lowercase . $uppercase . $numbers . $specialChars;
+}
 
 
 function generatePassword($length) {
