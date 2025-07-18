@@ -14,7 +14,7 @@ require_once './function.php'
 </head>
 <body>
 
-<form method="GET" action="">
+<form method="GET" action="./result.php">
     <h1> Grande generatore di password</h1>
     <br>
 
