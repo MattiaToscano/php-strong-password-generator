@@ -24,16 +24,21 @@
     <title>Password</title>
 </head>
 <body>
-    
+
 <form>
     <h1> Grande generatore di password</h1>
     <br>
 
-  <div class="mb-3 container-fluid">
+<div class="mb-3 container-fluid">
     <label for="exampleInputPassword1" class="form-label">Genera Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <button type="submit" class="btn btn-primary">Genera</button>
+
+    <input type="text" class="form-control" id="exampleInputPassword1"
+
+    value="<?php echo generateRandomString(10); ?>">
+
+</div>
+
+  <button type="submit" class="btn btn-primary"> <?php generateRandomString(10)?> Genera</button>
 </form>
 
 
